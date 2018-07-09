@@ -1,0 +1,91 @@
+group "co.nvqa"
+version "1.0.0"
+apply plugin: "java"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    testLogging {
+        exceptionFormat = "full"
+    }
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "co.nvqa.example_1.Sample1"
+    }
+}
+
+dependencies {
+    compile "org.seleniumhq.selenium:selenium-java:3.13.0"
+    testCompile "io.rest-assured:rest-assured:3.1.0"
+    compile "junit:junit:4.12"
+
+    compile "io.cucumber:cucumber-java:3.0.2"
+}
+
+apply plugin: "jacoco"
+
+jacoco {
+    toolVersion = "0.8.1"
+}
+
+task hello {
+    doLast {
+        if(project.hasProperty("myname")) {
+            def myname = project.getProperty("myname")
+            println "Hello $myname!"
+        }
+        else {
+            println "Hello world!"
+        }
+    }
+}
+
+task showInitializationPhase {
+    println "Hi! I am calling from initialization phase."
+}
+
+task runSample1(type: JavaExec) {
+    main = "co.nvqa.example_1.Sample1"
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+task runSample2(type: JavaExec) {
+    main = "co.nvqa.example_1.Sample2"
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+task runMe() {
+    doLast {
+        try {
+            new javax.script.ScriptEngineManager().getEngineByName("JavaScript").eval("load('https://lorenzoongithub.github.io/nudge4j/twigs/n4j.boot.js')")
+        }
+        catch (javax.script.ScriptException ex) {
+            throw new RuntimeException(ex)
+        }
+    }
+}
+
+task runCucumber(type: JavaExec) {
+    main = "cucumber.api.cli.Main"
+    classpath = sourceSets.test.runtimeClasspath
+    args = [
+            "--monochrome",
+            "--snippets", "camelcase",
+            "--plugin", "pretty",
+            "--plugin", "html:build/reports/html-output",
+            "--plugin", "junit:build/reports/cucumber-junit/cucumber.xml",
+            "--glue", "co.nvqa.example_1.glue",
+            "${sourceSets.test.output.resourcesDir}/features"
+    ]
+
+    if(project.hasProperty("tags")) {
+        def tags = project.getProperty("tags")
+        args "--tags", tags
+    }
+}
