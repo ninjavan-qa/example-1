@@ -4,7 +4,7 @@ Feature: Combine Cucumber with Selenium
 
   @CloseBrowser
   Scenario: Search article on Wikipedia
-    Given User open a browser and go to Wikipedia homepage on this URL "https://www.wikipedia.org/"
-    When User type "Selenium" on the search input
-    And User click submit button
+    Given User opens a browser and go to Wikipedia homepage on this URL "https://www.wikipedia.org/"
+    When User types "Selenium" on the search input
+    And User clicks submit button
     Then User verifies the result page title is "Selenium"

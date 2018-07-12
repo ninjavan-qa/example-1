@@ -25,7 +25,7 @@ public class Sample02Steps
     {
     }
 
-    @Given("User open a browser and go to Wikipedia homepage on this URL \"([^\"]*)\"")
+    @Given("User opens a browser and go to Wikipedia homepage on this URL \"([^\"]*)\"")
     public void goToWikipediaHomepage(String url) throws InterruptedException
     {
         System.setProperty("webdriver.chrome.driver", "./chromedriver");
@@ -40,7 +40,7 @@ public class Sample02Steps
         Thread.sleep(DELAY_IN_MILLIS);
     }
 
-    @When("User type \"([^\"]*)\" on the search input")
+    @When("User types \"([^\"]*)\" on the search input")
     public void inputSearchText(String searchText) throws InterruptedException
     {
         WebElement searchInputWe = webDriver.findElement(By.xpath("//input[@id='searchInput']"));
@@ -48,7 +48,7 @@ public class Sample02Steps
         Thread.sleep(DELAY_IN_MILLIS);
     }
 
-    @And("User click submit button")
+    @And("User clicks submit button")
     public void clickSubmitButton() throws InterruptedException
     {
         WebElement submitButtonWe = webDriver.findElement(By.xpath("//button[@type='submit']"));
