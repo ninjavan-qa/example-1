@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<a id="a1" name="Alpha-1" alias="A1">
+    <b id="b1" name="Beta-1" alias="B1">
+        <c id="c1" name="Charlie-1" alias="C1"></c>
+    </b>
+    <b id="b2" name="Beta-2" alias="B2">
+        <c id="c2" name="Charlie-1" alias="C1"></c>
+        <c id="c3" name="Charlie-3" alias="C3">
+            <d id="d1" name="Delta-1" alias="D1"></d>
+        </c>
+    </b>
+<a>
